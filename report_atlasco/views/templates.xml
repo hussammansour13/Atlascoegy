@@ -1,0 +1,791 @@
+<odoo>
+    <data>
+        <report
+                id="atlasco_project_report_id"
+                model="account.move"
+                report_type="qweb-pdf"
+                string="Atlasco Ate"
+                name="report_atlasco.atlasco_custom_report"
+                file="report_atlasco.atlasco_custom_report"
+        />
+
+        <template id="atlasco_custom_report">
+            <t t-call="web.html_container">
+                <t t-call="web.basic_layout">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page">
+                            <div
+                                    style="position:absolute;front-size:8em;width:100%;text-align:right;z-index:100;">
+                                <t t-if='o.company_id.logo'>
+                                    <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
+                                         alt="Logo"/>
+                                </t>
+                            </div>
+
+                            <h1 class="text-left" style="color:green">INVOICE</h1>
+                            <table class="table table-left" style="width:50%">
+                                <thead class="thead-dark">
+                                    <th>Invoice:
+                                        <td>
+                                            <span style="color:green" t-field="o.name"></span>
+                                        </td>
+                                    </th>
+                                    <th>Date:
+                                        <td>
+                                            <span style="color:green" t-field="o.invoice_date"></span>
+                                        </td>
+                                    </th>
+                                </thead>
+                            </table>
+                            <br/>
+                            <h8 style="color:green">Customer:
+                                <td>
+                                    <span t-field="o.partner_id"></span>
+                                </td>
+                            </h8>
+                            <br/>
+                            <br/>
+
+                            <table class="table" style="width:50%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Account</th>
+                                        <td>
+                                            <span t-field="o.partner_id"></span>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Order</th>
+                                        <td>
+                                            <span t-field="o.name"></span>
+
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Customer PO</th>
+                                        <td>
+                                            <span t-field="o.partner_id"></span>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Print Date</th>
+                                        <td>
+                                            <span t-field="o.invoice_date"></span>
+
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table class="table">
+                                <thead style="color:green">
+                                    <th>Item</th>
+                                    <th>Description</th>
+                                    <th>Qty</th>
+                                    <th>Unit Price</th>
+                                    <th>Total</th>
+
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="o.invoice_line_ids" t-as="line">
+                                        <tr t-if="line">
+                                            <td>
+                                                <span t-field="line.product_id"></span>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.name"></span>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.quantity"></span>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.price_unit"></span>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.price_subtotal"></span>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+
+
+                            </table>
+                            <div class="text-right">
+                                <strong>Subtotal:</strong>
+                                <span t-field="line.price_subtotal"/>
+                            </div>
+                            <div class="text-right">
+                                <strong>Discount:</strong>
+                                <span t-field="line.discount"/>
+
+
+                            </div>
+                            <div class="text-right">
+                                <strong>Withholding Taxes:</strong>
+                                <span t-field="line.price_subtotal"/>
+
+                                <div class="text-right">
+                                    <strong style="color:green">Grand Total:</strong>
+                                    <span t-field="line.price_subtotal" style="color:green"/>
+                                </div>
+                            </div>
+
+                            <div class="text-left">
+                                <strong style="color:green">Payment Term:</strong>
+                                <br/>
+                                <strong>method:</strong>
+<!--                                <span t-field="o.journal_id"/>-->
+
+                                <br/>
+                                <strong>Period:</strong>
+
+                            </div>
+                            <br/>
+
+                            <div align="center">
+                                <ol DIR="RTL" align="right" style="padding-right: 50px" class="border border-dark">
+                                    <li>المنشأة تخضع لنظام الدفعات المقدمة وليس لنظام الخصم والتحصيل من تحت حساب الضريبة
+                                        تطبيقا ألحكام المادة 62 من القانون 91 لسنة
+                                        2005 ، بناء عليه ال يتم خصم ضريبة ال 1 %او 3 ( %في حالة الخدمات ( من تعامالتنا
+                                    </li>
+                                    <li>لا تعتبر هده الفاتورة مسددة الا بادن وارد بكامل القيمةومختوم بختم الشركة</li>
+                                    <li>أقر أنا الموقع أدناه بأني تسلمت الفاتورة ومشمولها وان األصناف جميعها بحالة جيدة
+                                        .
+                                    </li>
+                                    <li>البضاعة المباعة ال ترد و ال تستبدل إال طبقا للقواعد .</li>
+
+
+                                </ol>
+                                <div style="width:40%;float:left">
+                                    <span style="margin-left:150px">
+                                        <strong>.........................................:توقيع الحسابات</strong>
+                                    </span>
+                                </div>
+                                <div style="width:40%;float:left">
+                                    <span style="margin-left:250px">
+                                        <strong>..............................................:اسم المستلم</strong>
+                                    </span>
+                                    <br/>
+                                </div>
+                            </div>
+
+                        </div>
+                        <br/>
+                        <br/>
+                        <div style="width:25%;float:left">
+                            <span style="margin-left:100px">
+                                <ul class="list-inline">
+                                    <i class="fa fa-phone" style="font-size:24px;color:green"></i>
+                                    <br/>________________
+
+                                    <li>(202) 44814440/1
+                                    </li>
+                                    <li>(202) 44814132
+                                    </li>
+                                    <li>
+                                        Fax: (202) 44814443
+                                    </li>
+                                    <li>
+                                        Mob: 0122331246
+                                    </li>
+                                    <li>
+                                        HotLine: 01220215000
+
+                                    </li>
+                                </ul>
+                            </span>
+                        </div>
+                        <div style="width:25%;float:left">
+                            <span style="margin-left:150px">
+                                <ul class="list-inline">
+                                    <i class="fa fa-globe" style="font-size:24px;color:green"></i>
+                                    <br/>________________
+
+
+                                    <li>www.atlascoegypt.com</li>
+                                    <li>ate_obor@atlascoegypt.com
+                                    </li>
+                                    <li>
+                                        facebook : @atlascoegypt
+                                    </li>
+                                </ul>
+                            </span>
+                            <br/>
+                        </div>
+
+
+                        <div style="width:25%;float:left">
+                            <span style="margin-left:200px">
+                                <ul class="list-inline">
+                                    <i class="fa fa-home" style="font-size:24px;color:green"></i>
+                                    <br/>________________
+                                    <li>رقم التسجيل الضريبي
+                                    </li>
+                                    <li>128-393-100
+                                    </li>
+                                    <li>270293س.ت:
+                                    </li>
+                                    <li>:ملف. ضريبي
+                                    </li>
+                                    <li>
+                                        5-340-08-191
+                                    </li>
+                                </ul>
+                            </span>
+                            <br/>
+                        </div>
+
+
+                        <div style="width:25%;float:left">
+                            <span style="margin-left:200px">
+                                <ul class="list-inline">
+                                    <i class="fa fa-map-marker" style="font-size:24px;color:green"></i>
+                                    <br/>________________
+                                    <li>1st Industrial
+                                    </li>
+                                    Zone,Piece 11,Block
+                                    <li>
+                                        13027, El-Obour City
+                                    </li>
+                                </ul>
+                            </span>
+                            <br/>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+
+
+
+
+
+
+        <report
+                id="atlasco_project_report_sea_id"
+                model="account.move"
+                report_type="qweb-pdf"
+                string="Atlasco SAE"
+                name="report_atlasco.atlasco_custom_report_sae"
+                file="report_atlasco.atlasco_custom_report_sae"
+        />
+
+        <template id="atlasco_custom_report_sae">
+            <t t-call="web.html_container">
+                <t t-call="web.basic_layout">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page">
+                            <div
+                                    style="position:absolute;front-size:8em;width:100%;text-align:right;z-index:100;">
+                                <t t-if='o.company_id.logo'>
+                                    <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
+                                         alt="Logo"/>
+                                </t>
+                            </div>
+
+                            <h1 class="text-left" style="color:green">INVOICE</h1>
+                            <table class="table table-left" style="width:50%">
+                                <thead class="thead-dark">
+                                    <th>Invoice:
+                                        <td>
+                                            <span style="color:green" t-field="o.name"></span>
+                                        </td>
+                                    </th>
+                                    <th>Date:
+                                        <td>
+                                            <span style="color:green" t-field="o.invoice_date"></span>
+                                        </td>
+                                    </th>
+                                </thead>
+                            </table>
+                            <br/>
+                            <h8 style="color:green">Customer:
+                                <td>
+                                    <span t-field="o.partner_id"></span>
+                                </td>
+                            </h8>
+                            <br/>
+                            <br/>
+
+                            <table class="table" style="width:50%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Account</th>
+                                        <td>
+                                            <span t-field="o.partner_id"></span>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Order</th>
+                                        <td>
+                                            <span t-field="o.name"></span>
+
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Customer PO</th>
+                                        <td>
+                                            <span t-field="o.partner_id"></span>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Print Date</th>
+                                        <td>
+                                            <span t-field="o.invoice_date"></span>
+
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table class="table">
+                                <thead style="color:green">
+                                    <th>Item</th>
+                                    <th>Description</th>
+                                    <th>Qty</th>
+                                    <th>Unit Price</th>
+                                    <th>Total</th>
+
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="o.invoice_line_ids" t-as="line">
+                                        <tr t-if="line">
+                                            <td>
+                                                <span t-field="line.product_id"></span>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.name"></span>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.quantity"></span>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.price_unit"></span>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.price_subtotal"></span>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+
+
+                            </table>
+                            <div class="text-right">
+                                <strong>Subtotal:</strong>
+                                <span t-field="line.price_subtotal"/>
+                            </div>
+                            <div class="text-right">
+                                <strong>Discount:</strong>
+                                <span t-field="line.discount"/>
+
+
+                            </div>
+                            <div class="text-right">
+                                <strong>Withholding Taxes:</strong>
+                                <span t-field="line.price_subtotal"/>
+
+                                <div class="text-right">
+                                    <strong style="color:green">Grand Total:</strong>
+                                    <span t-field="line.price_subtotal" style="color:green"/>
+                                </div>
+                            </div>
+
+                            <div class="text-left">
+                                <strong style="color:green">Payment Term:</strong>
+                                <br/>
+                                <strong>method:</strong>
+<!--                                <span t-field="o.journal_id"/>-->
+
+                                <br/>
+                                <strong>Period:</strong>
+
+                            </div>
+                            <br/>
+
+                            <div align="center">
+                                <ol DIR="RTL" align="right" style="padding-right: 50px" class="border border-dark">
+                                    <li>المنشأة تخضع لنظام الدفعات المقدمة وليس لنظام الخصم والتحصيل من تحت حساب الضريبة
+                                        تطبيقا ألحكام المادة 62 من القانون 91 لسنة
+                                        2005 ، بناء عليه ال يتم خصم ضريبة ال 1 %او 3 ( %في حالة الخدمات ( من تعامالتنا
+                                    </li>
+                                    <li>لا تعتبر هده الفاتورة مسددة الا بادن وارد بكامل القيمةومختوم بختم الشركة</li>
+                                    <li>أقر أنا الموقع أدناه بأني تسلمت الفاتورة ومشمولها وان األصناف جميعها بحالة جيدة
+                                        .
+                                    </li>
+                                    <li>البضاعة المباعة ال ترد و ال تستبدل إال طبقا للقواعد .</li>
+
+
+                                </ol>
+                                <div style="width:40%;float:left">
+                                    <span style="margin-left:150px">
+                                        <strong>.........................................:توقيع الحسابات</strong>
+                                    </span>
+                                </div>
+                                <div style="width:40%;float:left">
+                                    <span style="margin-left:250px">
+                                        <strong>..............................................:اسم المستلم</strong>
+                                    </span>
+                                    <br/>
+                                </div>
+                            </div>
+
+                        </div>
+                        <br/>
+                        <br/>
+                        <div style="width:25%;float:left">
+                            <span style="margin-left:100px">
+                                <ul class="list-inline">
+                                    <i class="fa fa-phone" style="font-size:24px;color:green"></i>
+                                    <br/>________________
+
+                                    <li>(202) 44814440/1
+                                    </li>
+                                    <li>(202) 44814132
+                                    </li>
+                                    <li>
+                                        Fax: (202) 44814443
+                                    </li>
+                                    <li>
+                                        Mob: 0122331246
+                                    </li>
+                                    <li>
+                                        HotLine: 01220215000
+
+                                    </li>
+                                </ul>
+                            </span>
+                        </div>
+                        <div style="width:25%;float:left">
+                            <span style="margin-left:150px">
+                                <ul class="list-inline">
+                                    <i class="fa fa-globe" style="font-size:24px;color:green"></i>
+                                    <br/>________________
+
+
+                                    <li>www.atlascoegypt.com</li>
+                                    <li>ate_obor@atlascoegypt.com
+                                    </li>
+                                    <li>
+                                        facebook : @atlascoegypt
+                                    </li>
+                                </ul>
+                            </span>
+                            <br/>
+                        </div>
+
+
+                        <div style="width:25%;float:left">
+                            <span style="margin-left:200px">
+                                <ul class="list-inline">
+                                    <i class="fa fa-home" style="font-size:24px;color:green"></i>
+                                    <br/>________________
+                                    <li>رقم التسجيل الضريبي
+                                    </li>
+                                    <li>556-448-367
+                                    </li>
+                                    <li>49246 س.ت:
+                                    </li>
+                                    <li>:ملف. ضريبي
+                                    </li>
+                                    <li>00-00-191-05480-5
+                                    </li>
+                                </ul>
+                            </span>
+                            <br/>
+                        </div>
+
+
+                        <div style="width:25%;float:left">
+                            <span style="margin-left:200px">
+                                <ul class="list-inline">
+                                    <i class="fa fa-map-marker" style="font-size:24px;color:green"></i>
+                                    <br/>________________
+                                    <li>1st Industrial
+                                    </li>
+                                    Zone,Piece 11,Block
+                                    <li>1st Industrial
+                                    </li>
+                                    <li>
+                                        13027, El-Obour City
+                                    </li>
+                                </ul>
+                            </span>
+                            <br/>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+        <report
+                id="atlasco_project_report_ate_id"
+                model="account.move"
+                report_type="qweb-pdf"
+                string="Prime Gear"
+                name="report_atlasco.prime_gear_custom_report"
+                file="report_atlasco.prime_gear_custom_report"
+        />
+
+        <template id="prime_gear_custom_report">
+            <t t-call="web.html_container">
+                <t t-call="web.basic_layout">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page">
+                            <div
+                                    style="position:absolute;front-size:8em;width:100%;text-align:right;z-index:100;">
+                                <t t-if='o.company_id.logo'>
+                                    <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
+                                         alt="Logo"/>
+                                </t>
+                            </div>
+
+                            <h1 class="text-left" style="color:blue">INVOICE</h1>
+                            <table class="table table-left" style="width:50%">
+                                <thead class="thead-dark">
+                                    <th>Invoice:
+                                        <td>
+                                            <span style="color:blue" t-field="o.name"></span>
+                                        </td>
+                                    </th>
+                                    <th>Date:
+                                        <td>
+                                            <span style="color:blue" t-field="o.invoice_date"></span>
+                                        </td>
+                                    </th>
+                                </thead>
+                            </table>
+                            <br/>
+                            <h8 style="color:blue">Customer:
+                                <td>
+                                    <span t-field="o.partner_id"></span>
+                                </td>
+                            </h8>
+                            <br/>
+                            <br/>
+
+                            <table class="table" style="width:50%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Account</th>
+                                        <td>
+                                            <span t-field="o.partner_id"></span>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Order</th>
+                                        <td>
+                                            <span t-field="o.name"></span>
+
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Customer PO</th>
+                                        <td>
+                                            <span t-field="o.partner_id"></span>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Print Date</th>
+                                        <td>
+                                            <span t-field="o.invoice_date"></span>
+
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table class="table">
+                                <thead style="color:blue">
+                                    <th>Item</th>
+                                    <th>Description</th>
+                                    <th>Qty</th>
+                                    <th>Unit Price</th>
+                                    <th>Total</th>
+
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="o.invoice_line_ids" t-as="line">
+                                        <tr t-if="line">
+                                            <td>
+                                                <span t-field="line.product_id"></span>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.name"></span>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.quantity"></span>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.price_unit"></span>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.price_subtotal"></span>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+
+
+                            </table>
+                            <div class="text-right">
+                                <strong>Subtotal:</strong>
+                                <span t-field="line.price_subtotal"/>
+                            </div>
+                            <div class="text-right">
+                                <strong>Discount:</strong>
+                                <span t-field="line.discount"/>
+
+
+                            </div>
+                            <div class="text-right">
+                                <strong>Withholding Taxes:</strong>
+                                <span t-field="line.price_subtotal"/>
+
+                                <div class="text-right">
+                                    <strong style="color:blue">Grand Total:</strong>
+                                    <span t-field="line.price_subtotal" style="color:blue"/>
+                                </div>
+                            </div>
+
+                            <div class="text-left">
+                                <strong style="color:blue">Payment Term:</strong>
+                                <br/>
+                                <strong>method:</strong>
+<!--                                <span t-field="o.journal_id"/>-->
+
+                                <br/>
+                                <strong>Period:</strong>
+
+                            </div>
+                            <br/>
+
+                            <div align="center">
+                                <ol DIR="RTL" align="right" style="padding-right: 50px" class="border border-dark">
+
+                                    <li>الشركة غير خاضعة لضريبة القيمة المضافة .</li>
+                                    <li>ال تعتبر هذه الفاتورة مسددة إال بإذن وارد بكامل القيمة ومختوم بختم الشركة .</li>
+
+
+                                </ol>
+                                <div style="width:40%;float:left">
+                                    <span style="margin-left:150px">
+                                        <strong>.........................................:توقيع الحسابات</strong>
+                                    </span>
+                                </div>
+                                <div style="width:40%;float:left">
+                                    <span style="margin-left:250px">
+                                        <strong>..............................................:اسم المستلم</strong>
+                                    </span>
+                                    <br/>
+                                </div>
+                            </div>
+
+                        </div>
+                        <br/>
+                        <br/>
+                        <div style="width:25%;float:left">
+                            <span style="margin-left:100px">
+                                <ul class="list-inline">
+                                    <i class="fa fa-phone" style="font-size:24px;color:blue"></i>
+                                    <br/>________________
+
+                                    <li>(202) 44814440/1
+                                    </li>
+                                    <li>(202) 44814132
+                                    </li>
+                                    <li>
+                                        Fax: (202) 44814443
+                                    </li>
+                                    <li>
+                                        Mob: 0122331246
+                                    </li>
+                                    <li>
+                                        HotLine: 01220215000
+
+                                    </li>
+                                </ul>
+                            </span>
+                        </div>
+                        <div style="width:25%;float:left">
+                            <span style="margin-left:150px">
+                                <ul class="list-inline">
+                                    <i class="fa fa-globe" style="font-size:24px;color:blue"></i>
+                                    <br/>________________
+
+
+                                    <li>www.atlascoegypt.com</li>
+                                    <li>primegear@atlascoegypt.com
+                                    </li>
+                                    <li>
+                                        facebook : @atlascoegypt
+                                    </li>
+                                </ul>
+                            </span>
+                            <br/>
+                        </div>
+
+
+                        <div style="width:25%;float:left">
+                            <span style="margin-left:200px">
+                                <ul class="list-inline">
+                                    <i class="fa fa-home" style="font-size:24px;color:blue"></i>
+                                    <br/>________________
+                                    <li>رقم التسجيل الضريبي
+                                    </li>
+                                    <li>083-059-724
+                                    </li>
+                                    <li>133083س.ت:
+                                    </li>
+                                </ul>
+                            </span>
+                            <br/>
+                        </div>
+
+
+                        <div style="width:25%;float:left">
+                            <span style="margin-left:200px">
+                                <ul class="list-inline">
+                                    <i class="fa fa-map-marker" style="font-size:24px;color:blue"></i>
+                                    <br/>________________
+                                    <li>1st Industrial
+                                    </li>
+                                    Zone,Piece 11,Block
+                                    <li>1st Industrial
+                                    </li>
+                                    <li>
+                                        13027, El-Obour City
+                                    </li>
+                                </ul>
+                            </span>
+                            <br/>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+
+
+
+    </data>
+</odoo>

@@ -553,23 +553,23 @@
                                 </t>
                             </div>
 
-                            <h1 class="text-left" style="color:blue">INVOICE</h1>
+                            <h1 class="text-left" style="color:CadetBlue">INVOICE</h1>
                             <table class="table table-left" style="width:50%">
                                 <thead class="thead-dark">
                                     <th>Invoice:
                                         <td>
-                                            <span style="color:blue" t-field="o.name"></span>
+                                            <span style="color:CadetBlue" t-field="o.name"></span>
                                         </td>
                                     </th>
                                     <th>Date:
                                         <td>
-                                            <span style="color:blue" t-field="o.invoice_date"></span>
+                                            <span style="color:CadetBlue" t-field="o.invoice_date"></span>
                                         </td>
                                     </th>
                                 </thead>
                             </table>
                             <br/>
-                            <h8 style="color:blue">Customer:
+                            <h8 style="color:CadetBlue">Customer:
                                 <td>
                                     <span t-field="o.partner_id"></span>
                                 </td>
@@ -614,7 +614,7 @@
                             </table>
 
                             <table class="table">
-                                <thead style="color:blue">
+                                <thead style="color:CadetBlue">
                                     <th>Item</th>
                                     <th>Description</th>
                                     <th>Qty</th>
@@ -661,13 +661,13 @@
                                 <span t-field="line.price_subtotal"/>
 
                                 <div class="text-right">
-                                    <strong style="color:blue">Grand Total:</strong>
-                                    <span t-field="line.price_subtotal" style="color:blue"/>
+                                    <strong style="color:CadetBlue">Grand Total:</strong>
+                                    <span t-field="line.price_subtotal" style="color:CadetBlue"/>
                                 </div>
                             </div>
 
                             <div class="text-left">
-                                <strong style="color:blue">Payment Term:</strong>
+                                <strong style="color:CadetBlue">Payment Term:</strong>
                                 <br/>
                                 <strong>method:</strong>
 <!--                                <span t-field="o.journal_id"/>-->
@@ -705,7 +705,7 @@
                         <div style="width:25%;float:left">
                             <span style="margin-left:100px">
                                 <ul class="list-inline">
-                                    <i class="fa fa-phone" style="font-size:24px;color:blue"></i>
+                                    <i class="fa fa-phone" style="font-size:24px;color:CadetBlue"></i>
                                     <br/>________________
 
                                     <li>(202) 44814440/1
@@ -728,7 +728,7 @@
                         <div style="width:25%;float:left">
                             <span style="margin-left:150px">
                                 <ul class="list-inline">
-                                    <i class="fa fa-globe" style="font-size:24px;color:blue"></i>
+                                    <i class="fa fa-globe" style="font-size:24px;color:CadetBlue"></i>
                                     <br/>________________
 
 
@@ -747,7 +747,7 @@
                         <div style="width:25%;float:left">
                             <span style="margin-left:200px">
                                 <ul class="list-inline">
-                                    <i class="fa fa-home" style="font-size:24px;color:blue"></i>
+                                    <i class="fa fa-home" style="font-size:24px;color:CadetBlue"></i>
                                     <br/>________________
                                     <li>رقم التسجيل الضريبي
                                     </li>
@@ -764,7 +764,7 @@
                         <div style="width:25%;float:left">
                             <span style="margin-left:200px">
                                 <ul class="list-inline">
-                                    <i class="fa fa-map-marker" style="font-size:24px;color:blue"></i>
+                                    <i class="fa fa-map-marker" style="font-size:24px;color:CadetBlue"></i>
                                     <br/>________________
                                     <li>1st Industrial
                                     </li>

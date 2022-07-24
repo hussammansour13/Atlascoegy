@@ -51,7 +51,7 @@
                                     <tr>
                                         <th scope="col">Account</th>
                                         <td>
-                                            <span t-field="o.partner_id"></span>
+<!--                                            <span t-field="o.partner_id"></span>-->
                                         </td>
                                     </tr>
                                 </thead>
@@ -67,7 +67,7 @@
                                     <tr>
                                         <th scope="row">Customer PO</th>
                                         <td>
-                                            <span t-field="o.partner_id"></span>
+<!--                                            <span t-field="o.partner_id"></span>-->
                                         </td>
 
                                     </tr>
@@ -319,7 +319,7 @@
                                     <tr>
                                         <th scope="col">Account</th>
                                         <td>
-                                            <span t-field="o.partner_id"></span>
+<!--                                            <span t-field="o.partner_id"></span>-->
                                         </td>
                                     </tr>
                                 </thead>
@@ -335,7 +335,7 @@
                                     <tr>
                                         <th scope="row">Customer PO</th>
                                         <td>
-                                            <span t-field="o.partner_id"></span>
+<!--                                            <span t-field="o.partner_id"></span>-->
                                         </td>
 
                                     </tr>
@@ -582,7 +582,7 @@
                                     <tr>
                                         <th scope="col">Account</th>
                                         <td>
-                                            <span t-field="o.partner_id"></span>
+<!--                                            <span t-field="o.partner_id"></span>-->
                                         </td>
                                     </tr>
                                 </thead>
@@ -598,7 +598,7 @@
                                     <tr>
                                         <th scope="row">Customer PO</th>
                                         <td>
-                                            <span t-field="o.partner_id"></span>
+<!--                                            <span t-field="o.partner_id"></span>-->
                                         </td>
 
                                     </tr>

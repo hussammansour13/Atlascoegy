@@ -1,0 +1,62 @@
+<odoo>
+    <data>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="product_template_form_id" model="ir.ui.view">
+            <field name="name">on hand</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+
+
+                <xpath expr="//button[@name='action_open_quants']" position="attributes">
+                    <attribute name="groups">hide_quantity_on_hand.hide_onhand_quantitiy</attribute>
+
+                </xpath>
+                <xpath expr="//button[@name='action_product_tmpl_forecast_report']" position="attributes">
+                    <attribute name="groups">hide_quantity_on_hand.hide_onhand_quantitiy</attribute>
+
+                </xpath>
+
+
+            </field>
+        </record>
+
+        <record id="hide_onhand_quantitiy" model="res.groups">
+            <field name="name">Hide Quantity On Hand And Forcasted</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="action_post_button_inherit" model="ir.ui.view">
+            <field name="name">post action button</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+
+                 <xpath expr="//header/button[@name='action_post'][2]" position="attributes">
+                     <attribute name="groups">hide_quantity_on_hand.hide_confirm_button_for_some_users</attribute>
+
+                </xpath>
+
+<!--                <xpath expr="//button[@name='action_post']" position="attributes">-->
+<!--                    <attribute name="groups">hide_quantity_on_hand.hide_confirm_button_for_some_users</attribute>-->
+<!--                </xpath>-->
+<!--                <xpath expr="//button[@name='action_post'][last() -1]" position="attributes">-->
+<!--                    <attribute name="groups">hide_quantity_on_hand.hide_confirm_button_for_some_users</attribute>-->
+<!--                </xpath>-->
+
+
+
+            </field>
+        </record>
+
+        <record id="hide_confirm_button_for_some_users" model="res.groups">
+            <field name="name">Hide Confirm Button Invoicing</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+    </data>
+</odoo>

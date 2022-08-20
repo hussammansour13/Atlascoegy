@@ -20,7 +20,13 @@ def fields_view_get(self, view_id=None, view_type='form', toolbar=False, submenu
         temp.set('create', '0')
         result['arch'] = etree.tostring(temp)
 
+    if self.env.user.has_group('Hide_Main_Buttons.hide_edit_button_sale'):
+        temp = etree.fromstring(result['arch'])
+        temp.set('edit', '0')
+        result['arch'] = etree.tostring(temp)
     return result
+
+    # return result
 
 saleorderone.fields_view_get = fields_view_get
 

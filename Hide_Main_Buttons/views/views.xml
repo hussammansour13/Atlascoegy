@@ -6,6 +6,11 @@
             <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
         </record>
 
+        <record id="hide_edit_button_sale" model="res.groups">
+            <field name="name">Hide Edit Button Sale</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
 
 
     </data>

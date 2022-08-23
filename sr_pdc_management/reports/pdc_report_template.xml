@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="pdc_report_template">
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <t t-foreach="docs" t-as="o">
+                    <p align="center">سند صرف شيك</p>
+                    <table style="width:100%">
+                        <tr>
+                            <td dir="RTL" align="right" t-esc="o.company_id.name"></td>
+                            <td dir="RTL" align="right" t-if="o.company_id.name">الشركة:</td>
+                        </tr>
+                        <tr>
+                            <td dir="RTL" align="right" t-esc="o.amount"/>
+                            <td dir="RTL" align="right">المبلغ المطلوب:</td>
+                        </tr>
+                        <tr>
+                            <td dir="RTL" align="right" t-esc="o.amount"/>
+                            <td dir="RTL" align="right">فقط وقدره:</td>
+                        </tr>
+                        <tr>
+                            <td dir="RTL" align="right" t-esc="o.company_id.name"/>
+                            <td dir="RTL" align="right">اسم المستفيد:</td>
+                        </tr>
+                        <tr>
+                            <td dir="RTL" align="right" t-esc="o.payment_date"/>
+                            <td dir="RTL" align="right">تاريخ:</td>
+                        </tr>
+                    </table>
+
+                    <!--                    <div class="row">-->
+                    <!--                        <t t-if="docs.company_id">-->
+                    <!--                        </t>-->
+                    <!--                    </div>-->
+                    <br></br>
+                    <br></br>
+                    <p align="center" DIR="RTL">استلام المستفيد</p>
+
+                    <table style="width:100%">
+                        <tr>
+                            <td DIR="RTL" align="right">بطاقه رقم : ...............................................
+                            </td>
+                            <td DIR="RTL" align="right">استلمت انا
+                                :..........................................................
+                            </td>
+                        </tr>
+                        <tr>
+                            <td DIR="RTL" align="right">شيك رقم :
+                                .................................................
+                            </td>
+                            <td DIR="RTL" align="right">بصفتي :
+                                ..........................................................
+                            </td>
+                        </tr>
+                        <tr>
+                            <td DIR="RTL" align="right">بمبلغ : ........,......... (فقط و
+                                قدره.................................................)
+                            </td>
+                            <td DIR="RTL" align="right">المسحوب علي:
+                                ..........................................................
+                            </td>
+                        </tr>
+                        <tr>
+                            <td DIR="RTL" align="center">التوقيع</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+
+                    <hr color="black"></hr>
+                    <br></br>
+                    <br></br>
+                    <table width="width:100%" align="right" border="5">
+                        <tr>
+                            <td dir="RTL" align="right" t-esc="o.payment_date"/>
+                            <td DIR="RTL" align="right">التاريخ:</td>
+                        </tr>
+                        <tr>
+                            <td dir="RTL" align="center" t-esc="o.amount"/>
+                            <td DIR="RTL" align="right">أدفعوا بموجب هذاالشيك :</td>
+                        </tr>
+
+                    </table>
+                    <br></br>
+                    <table border="5" align="right" width="100%">
+                        <tr>
+                            <td dir="RTL" align="right" t-esc="o.amount"/>
+                            <td DIR="RTL" align="right" width="50%">مبلغ و قدره:</td>
+                            <td DIR="RTL" align="center">EGP :</td>
+                            <td dir="RTL" align="center" t-esc="o.amount"/>
+                        </tr>
+                    </table>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <table align="right" width="100%">
+                        <tr DIR="RTL" align="right">
+                            <td DIR="RTL" align="right"></td>
+                            <td DIR="RTL" align="right">التوقيع</td>
+                        </tr>
+                        <tr DIR="RTL" align="right">
+                            <td DIR="RTL" align="right"></td>
+                            <td DIR="RTL" align="right">____________________</td>
+                        </tr>
+                    </table>
+
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

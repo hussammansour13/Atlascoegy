@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+        <!--        <record model="ir.ui.view" id="sale_order_line_id_unit_price">-->
+        <!--            <field name="name">saleorder</field>-->
+        <!--            <field name="model">sale.order</field>-->
+        <!--            <field name="inherit_id" ref="sale.view_order_form"/>-->
+        <!--            <field name="groups_id" eval="[(4, ref('readonly_based_group.hidden_unit_price_id'))]"/>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                        <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="attributes">-->
+        <!--                            <attribute name="readonly">1</attribute>-->
+        <!--                        </xpath>-->
+        <!--            </field>-->
+        <!--        </record>-->
+        <record id="view_order_form_editable_list" model="ir.ui.view">
+            <field name="name">sale.order.form.editable.list</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="groups_id"
+                   eval="[(4, ref('readonly_based_group.hidden_unit_price_id'))]"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="hidden_unit_price_id" model="res.groups">
+            <field name="name">Readonly Unite Price</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+    </data>
+</odoo>

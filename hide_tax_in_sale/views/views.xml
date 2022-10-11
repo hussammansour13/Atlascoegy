@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+
+        <template id="inherit_report_sale" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//td[@name='td_taxes']" position="attributes">
+                <attribute name="t-if">td_taxes</attribute>
+            </xpath>
+             <xpath expr="//th[@name='th_taxes']" position="attributes">
+                <attribute name="t-if">th_taxes</attribute>
+            </xpath>
+        </template>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_new__state__atlasco_new__state__atlasco,new__state__atlasco.new__state__atlasco,model_new__state__atlasco_new__state__atlasco,base.group_user,1,1,1,1

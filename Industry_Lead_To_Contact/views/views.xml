@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit CRM Lead Form View to Modify it -->
+        <record id="crm_dob_id_form" model="ir.ui.view">
+            <field name="name">crmDob</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='lang_id']" position="after">
+                    <field name="insdustry"/>
+                    <field name="type_new"/>
+                    <field name="department"/>
+                    <field name="organization_english_name"/>
+                    <field name="need"/>
+                    <field name="mobile_2" attrs="{'invisible': [('mobile', '=', False)]}"/>
+                    <field name="fax" placeholder="FAX"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="contact_dob_id_form" model="ir.ui.view">
+            <field name="name">contactDob</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='vat']" position="after">
+                    <field name="type_two"/>
+                    <field name="department_new"/>
+
+                </xpath>
+                <xpath expr="//field[@name='industry_id']" position="replace">
+                    <field name="insdustry_ee" attrs="{'invisible': [('is_company', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <field name="organization_english_name_two"/>
+                    <field name="need_new"/>
+                    <field name="new_mobile"/>
+                    <field name="new_fax" placeholder="FAX"/>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

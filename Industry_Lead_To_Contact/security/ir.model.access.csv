@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_see_his_own_contact_see_his_own_contact,see_his_own_contact.see_his_own_contact,model_see_his_own_contact_see_his_own_contact,base.group_user,1,1,1,1

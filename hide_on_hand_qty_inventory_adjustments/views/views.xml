@@ -8,11 +8,15 @@
             <field name="arch" type="xml">
 
                 <xpath expr="//field[@name='quantity']" position="attributes">
-                    <attribute name="invisible">1</attribute>
+                    <attribute name="groups">hide_on_hand_qty_inventory_adjustments.hide_quantity_adjustment</attribute>
                 </xpath>
 
             </field>
         </record>
 
+        <record id="hide_quantity_adjustment" model="res.groups">
+            <field name="name">Hide Quantity Adjustment</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
     </data>
 </odoo>

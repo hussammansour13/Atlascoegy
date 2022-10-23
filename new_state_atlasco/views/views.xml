@@ -11,7 +11,7 @@
                 <field name="state" widget="statusbar" statusbar_visible="rejection,draft,sent,sale"/>
             </xpath>
             <xpath expr="//button[@name='action_cancel']" position="after">
-                <button name="action_rejection" string="Rejection" type="object" class="btn-primary" attrs="{'invisible': [('state', 'in', ['rejection'])]}"/>
+                <button name="action_rejection" string="Rejection" type="object" class="btn-primary" attrs="{'invisible': [('state', 'in', ['rejection','sale'])]}"/>
             </xpath>
 
         </field>

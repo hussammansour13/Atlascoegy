@@ -9,7 +9,7 @@ class newstateatlasco(models.Model):
         ('sale', 'Sales Order'),
         ('done', 'Locked'),
         ('cancel', 'Cancelled'),
-        ('rejection', 'Qout Rejection Reson'),
+        ('rejection', 'Quot Rejection Reason'),
     ], string='Status', readonly=True, copy=False, index=True, tracking=3, default='draft')
 
 

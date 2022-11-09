@@ -40,6 +40,10 @@
                                 <field name="company_profile"/>
                                 <field name="future_expansions"/>
                                 <field name="problem_facing"/>
+                                <field name="client_interested_in"/>
+                                <field name="interested_in"
+                                       attrs="{'invisible': [('client_interested_in', '=', False)]}"/>
+                                <field name="Short_results"/>
 
 
                             </group>

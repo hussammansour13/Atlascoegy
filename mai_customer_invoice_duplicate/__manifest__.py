@@ -1,0 +1,31 @@
+{
+    'name': 'Duplicate Customer Invoice and Vendor bill from one Company to another Company',
+    'category': 'Point of Sale',
+    'summary': 'Duplicate Customer Invoice and Vendor bill from one Company to another Company',
+    'description': """ Duplicate Customer Invoice and Vendor bill from one Company to another Company
+    """,
+    "author" : "MAISOLUTIONSLLC",
+    "category": 'Point of Sale',
+    'version' : '15.1.1.1',
+    "license": 'OPL-1',
+    'sequence': 1,
+    "price": 40,
+    "currency": "EUR",    
+    "email": 'apps@maisolutionsllc.com',
+    "website":'http://maisolutionsllc.com/',
+    "depends" : ['base','account'],
+    "data": [
+        'security/account.xml',
+        'security/ir.model.access.csv',
+        'views/account_view.xml',
+    ],
+    'qweb': [],
+    'images': ['static/description/main_screenshot.png'],
+    "live_test_url" : "https://youtu.be/H1RCvQYlIbA",    
+    'demo': [],
+    'test': [],
+    'installable': True,
+    'auto_install': False,
+    'application': True,
+}
+

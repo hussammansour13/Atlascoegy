@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_tree_serial_number_stock_tree_serial_number,stock_tree_serial_number.stock_tree_serial_number,model_stock_tree_serial_number_stock_tree_serial_number,base.group_user,1,1,1,1

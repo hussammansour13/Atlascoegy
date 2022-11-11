@@ -1,0 +1,57 @@
+<odoo>
+    <data>
+        <record id="crm_lead_view_form_inherit_uoiyoi" model="ir.ui.view">
+            <field name="name">activity hy</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+
+
+                <xpath expr="//notebook/page[@name='lead']" position="after">
+                    <page name="activity" string="Activity">
+                        <group>
+                            <group string="Activity">
+                                <field name="state_sta"/>
+                                <field name="submit_weekly_plan"/>
+                                <br/>
+                                <field name="competitors"/>
+                                <field name="does_the_client"/>
+                                <field name="does_the_client_have"/>
+                                <br/>
+                                <field name="machine_type"/>
+                                <field name="machine_model"/>
+                                <field name="manufacturer"/>
+                                <field name="production_year"/>
+                                <field name="Serial_Number"/>
+                                <field name="notes_on_machine"/>
+
+
+                            </group>
+                            <group>
+                                <br/>
+                                <br/>
+                                <field name="customer_needs"/>
+                                <field name="meeting_type"/>
+                                <br/>
+                                <field name="primegear_courses"/>
+                                <field name="stations"/>
+                                <field name="conditional"/>
+                                <field name="spareparts"/>
+                                <field name="company_profile"/>
+                                <field name="future_expansions"/>
+                                <field name="problem_facing"/>
+                                <field name="client_interested_in"/>
+                                <field name="interested_in"
+                                       attrs="{'invisible': [('client_interested_in', '=', False)]}"/>
+                                <field name="Short_results"/>
+
+
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
